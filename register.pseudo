@@ -1,0 +1,7 @@
+// Replace procedural code with MVC wiring
+
+model = new RegisterModel();
+view = new RegisterView();
+controller = new RegisterController(model, view);
+
+controller.handle();
