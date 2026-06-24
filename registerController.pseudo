@@ -1,0 +1,30 @@
+// Created Controller to handle input and coordinate model/view
+
+class RegisterController {
+
+    constructor(model, view){
+        this.model = model;
+        this.view = view;
+    }
+
+    handle(){
+        username = POST["username"];
+        pw1 = POST["password1"];
+        pw2 = POST["password2"];
+
+        if(!this.model.passwordsMatch(pw1, pw2) ||
+           !this.model.valid(username) ||
+           !this.model.valid(pw1)){
+            return this.view.showError(400);
+        }
+
+        pwHash = this.model.hashPassword(pw1);
+
+        success = this.model.createUser(username, pwHash);
+
+        if(!success)
+            return this.view.showError(500);
+
+        return this.view.showWelcome(username);
+    }
+}
