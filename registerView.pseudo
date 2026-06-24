@@ -1,0 +1,26 @@
+// Create view to separate HTML output from logic
+
+class RegisterView {
+
+    showError(code){
+        return redirectBack(code);
+    }
+
+    showWelcome(username){
+        title = "<title>Welcome " + username + "</title>";
+
+        if(getCurrentSeason() == "summer")
+            h1 = "<h1 style='color: RED'>";
+        else
+            h1 = "<h1 style='color: BLUE'>";
+
+        print "<html>
+                <head>" + title + "</head>
+                <body>
+                    " + h1 + "
+                        Welcome " + username + "
+                    </h1>
+                </body>
+               </html>";
+    }
+}
